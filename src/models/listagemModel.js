@@ -1,39 +1,34 @@
 const pool = require("../config/database");
 
 const getAllListagens = async () => {
-    const result = await pool.query("SELECT * FROM listagem");
+    const result = await pool.query("SELECT * FROM listagem ORDER BY id ASC");
     return result.rows;
 };
 
 const getListagemById = async (id) => {
-    const result = await pool.query("SELECT * FROM listagens WHERE id = $1", [id]);
+    const result = await pool.query("SELECT * FROM listagem WHERE id = $1", [id]);
     return result.rows[0];
 };
 
-const createListagem = async (listagem_id, titulo, subtitulo, texto,) => {
+const createListagem = async (conteudo) => {
     const result = await pool.query(
-        "INSERT INTO listagens (listagem_id, titulo, subtitulo, texto,) VALUES ($1) RETURNING *",
-        [listagem_id, titulo, subtitulo, texto,]
+        "INSERT INTO listagem (conteudo) VALUES ($1) RETURNING *",
+        [conteudo]
     );
     return result.rows[0];
 };
 
-const updateListagem = async (id, listagem_id, titulo, subtitulo, texto,) => {
+const updateListagem = async (id, conteudo) => {
     const result = await pool.query(
-        "UPDATE listagens SET listagem_id, titulo, subtitulo, texto, = $1 RETURNING *",
-        [listagem_id, titulo, subtitulo, texto,, id]
+        "UPDATE listagem SET conteudo = $1 WHERE id = $2 RETURNING *",
+        [conteudo, id]
     );
     return result.rows[0];
 };
 
 const deleteListagem = async (id) => {
-    const result = await pool.query("DELETE FROM listagens WHERE id = $1 RETURNING *", [id]);
-
-    if (result.rowCount === 0) {
-        return { error: "Listagem não encontrada." };
-    }
-
-    return { message: "Listagem deletada com sucesso." };
+    const result = await pool.query("DELETE FROM listagem WHERE id = $1 RETURNING *", [id]);
+    return result.rowCount ? { message: "Listagem deletada com sucesso." } : { error: "Listagem não encontrada." };
 };
 
 module.exports = { getAllListagens, getListagemById, createListagem, updateListagem, deleteListagem };
