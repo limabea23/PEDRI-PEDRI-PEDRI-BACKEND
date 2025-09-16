@@ -23,8 +23,8 @@ const getListagem = async (req, res) => {
 
 const createListagem = async (req, res) => {
     try {
-        const { conteudo } = req.body;
-        const newListagem = await listagemModel.createListagem(conteudo);
+        const photo = req.file ? req.file.filename : null;
+        const newListagem = await listagemModel.createListagem(photo);
         res.status(201).json(newListagem);
     } catch (error) {
         if (error.code === "23505") {
@@ -36,8 +36,8 @@ const createListagem = async (req, res) => {
 
 const updateListagem = async (req, res) => {
     try {
-        const { conteudo } = req.body;
-        const updatedListagem = await listagemModel.updateListagem(req.params.id, conteudo);
+        const { photo } = req.body;
+        const updatedListagem = await listagemModel.updateListagem(req.params.id, photo);
         if (!updatedListagem) {
             return res.status(404).json({ message: "listagem não encontrada." });
         }

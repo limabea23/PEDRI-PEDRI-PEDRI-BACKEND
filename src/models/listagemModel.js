@@ -10,18 +10,18 @@ const getListagemById = async (id) => {
     return result.rows[0];
 };
 
-const createListagem = async (conteudo) => {
+const createListagem = async (photo) => {
     const result = await pool.query(
-        "INSERT INTO listagem (conteudo) VALUES ($1) RETURNING *",
-        [conteudo]
+        "INSERT INTO listagem (photo) VALUES ($1) RETURNING *",
+        [photo]
     );
     return result.rows[0];
 };
 
-const updateListagem = async (id, conteudo) => {
+const updateListagem = async (id, photo) => {
     const result = await pool.query(
-        "UPDATE listagem SET conteudo = $1 WHERE id = $2 RETURNING *",
-        [conteudo, id]
+        "UPDATE listagem SET photo = $1 WHERE id = $2 RETURNING *",
+        [photo, id]
     );
     return result.rows[0];
 };

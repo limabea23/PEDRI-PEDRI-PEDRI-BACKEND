@@ -4,7 +4,7 @@ CREATE DATABASE pedri;
 
 CREATE TABLE listagem (
     id SERIAL PRIMARY KEY,
-    conteudo VARCHAR(100) NOT NULL UNIQUE
+    photo TEXT
 );
 
 CREATE TABLE detalhes (
