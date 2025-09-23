@@ -23,8 +23,9 @@ const getDetalhe = async (req, res) => {
 
 const createDetalhe = async (req, res) => {
     try {
-        const { listagem_id, titulo, subtitulo, texto, anexo } = req.body;
-        const newDetalhe = await detalhesModel.createDetalhe(listagem_id, titulo, subtitulo, texto, anexo);
+        const { listagem_id, titulo, subtitulo, texto } = req.body;
+        const photo = req.file ? req.file.filename : null;
+        const newDetalhe = await detalhesModel.createDetalhe(listagem_id, titulo, subtitulo, texto, photo);
         res.status(201).json(newDetalhe);
     } catch (error) {
         res.status(500).json({ message: "erro ao criar detalhe." });
@@ -33,8 +34,9 @@ const createDetalhe = async (req, res) => {
 
 const updateDetalhe = async (req, res) => {
     try {
-        const { listagem_id, titulo, subtitulo, texto, anexo } = req.body;
-        const updatedDetalhe = await detalhesModel.updateDetalhe(req.params.id, listagem_id, titulo, subtitulo, texto, anexo);
+        const { listagem_id, titulo, subtitulo, texto } = req.body;
+        const photo = req.file ? req.file.filename : null;
+        const updatedDetalhe = await detalhesModel.updateDetalhe(req.params.id, listagem_id, titulo, subtitulo, texto, photo);
         if (!updatedDetalhe) {
             return res.status(404).json({ message: "detalhe não encontrado." });
         }

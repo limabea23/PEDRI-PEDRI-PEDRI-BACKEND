@@ -23,8 +23,9 @@ const getNoticia = async (req, res) => {
 
 const createNoticia = async (req, res) => {
     try {
-        const { listagem_id, titulo, subtitulo, texto, anexo, data_publicacao } = req.body;
-        const newNoticia = await noticiasModel.createNoticia(listagem_id, titulo, subtitulo, texto, anexo, data_publicacao);
+        const { listagem_id, titulo, subtitulo, texto, data_publicacao } = req.body;
+        const photo = req.file ? req.file.filename : null;
+        const newNoticia = await noticiasModel.createNoticia(listagem_id, titulo, subtitulo, texto, photo, data_publicacao);
         res.status(201).json(newNoticia);
     } catch (error) {
         res.status(500).json({ message: "erro ao criar notícia." });
@@ -33,8 +34,9 @@ const createNoticia = async (req, res) => {
 
 const updateNoticia = async (req, res) => {
     try {
-        const { listagem_id, titulo, subtitulo, texto, anexo, data_publicacao } = req.body;
-        const updatedNoticia = await noticiasModel.updateNoticia(req.params.id, listagem_id, titulo, subtitulo, texto, anexo, data_publicacao);
+        const { listagem_id, titulo, subtitulo, texto, data_publicacao } = req.body;
+        const photo = req.file ? req.file.filename : null;
+        const updatedNoticia = await noticiasModel.updateNoticia(req.params.id, listagem_id, titulo, subtitulo, texto, photo, data_publicacao);
         if (!updatedNoticia) {
             return res.status(404).json({ message: "notícia não encontrada." });
         }
