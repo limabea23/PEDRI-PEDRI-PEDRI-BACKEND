@@ -13,7 +13,7 @@ CREATE TABLE detalhes (
     titulo VARCHAR(100) NOT NULL,
     subtitulo TEXT,
     texto TEXT, 
-    anexo TEXT, 
+    photo TEXT, 
     CONSTRAINT fk_listagem_detalhes FOREIGN KEY (listagem_id) REFERENCES listagem(id) 
 );
 
@@ -21,7 +21,7 @@ CREATE TABLE galeria (
     id SERIAL PRIMARY KEY,
     listagem_id INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
-    anexo TEXT, 
+    photo TEXT, 
     CONSTRAINT fk_listagem_galeria FOREIGN KEY (listagem_id) REFERENCES listagem(id) 
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE noticias (
     titulo VARCHAR(100) NOT NULL,
     subtitulo TEXT,
     texto TEXT, 
-    anexo TEXT, 
+    photo TEXT, 
     data_publicacao DATE,
     CONSTRAINT fk_listagem_noticias FOREIGN KEY (listagem_id) REFERENCES listagem(id) 
 );
