@@ -10,18 +10,18 @@ const getGaleriaById = async (id) => {
     return result.rows[0];
 };
 
-const createGaleria = async (listagem_id, titulo, anexo) => {
+const createGaleria = async (listagem_id, titulo, photo) => {
     const result = await pool.query(
-        "INSERT INTO galeria (listagem_id, titulo, anexo) VALUES ($1, $2, $3) RETURNING *",
-        [listagem_id, titulo, anexo]
+        "INSERT INTO galeria (listagem_id, titulo, photo) VALUES ($1, $2, $3) RETURNING *",
+        [listagem_id, titulo, photo]
     );
     return result.rows[0];
 };
 
-const updateGaleria = async (id, listagem_id, titulo, anexo) => {
+const updateGaleria = async (id, listagem_id, titulo, photo) => {
     const result = await pool.query(
-        "UPDATE galeria SET listagem_id = $1, titulo = $2, anexo = $3 WHERE id = $4 RETURNING *",
-        [listagem_id, titulo, anexo, id]
+        "UPDATE galeria SET listagem_id = $1, titulo = $2, photo = $3 WHERE id = $4 RETURNING *",
+        [listagem_id, titulo, photo, id]
     );
     return result.rows[0];
 };

@@ -10,18 +10,18 @@ const getDetalheById = async (id) => {
     return result.rows[0];
 };
 
-const createDetalhe = async (listagem_id, titulo, subtitulo, texto, anexo) => {
+const createDetalhe = async (titulo, listagem_id, photo) => {
     const result = await pool.query(
-        "INSERT INTO detalhes (listagem_id, titulo, subtitulo, texto, anexo) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-        [listagem_id, titulo, subtitulo, texto, anexo]
+        "INSERT INTO detalhes (titulo, listagem_id, photo) VALUES ($1, $2, $3) RETURNING *",
+        [titulo, listagem_id, photo]
     );
     return result.rows[0];
 };
 
-const updateDetalhe = async (id, listagem_id, titulo, subtitulo, texto, anexo) => {
+const updateDetalhe = async (id, listagem_id, titulo, subtitulo, texto, photo) => {
     const result = await pool.query(
-        "UPDATE detalhes SET listagem_id = $1, titulo = $2, subtitulo = $3, texto = $4, anexo = $5 WHERE id = $6 RETURNING *",
-        [listagem_id, titulo, subtitulo, texto, anexo, id]
+        "UPDATE detalhes SET listagem_id = $1, titulo = $2, subtitulo = $3, texto = $4, photo = $5 WHERE id = $6 RETURNING *",
+        [listagem_id, titulo, subtitulo, texto, photo, id]
     );
     return result.rows[0];
 };
