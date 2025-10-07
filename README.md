@@ -54,8 +54,8 @@ Fluxo de navegação: Todas as páginas possuem header com links globais e foote
 
 > **Integração entre Backend e Frontend**
 >
-> A API foi estruturada para oferecer tabelas e endpoints para todas as cinco páginas do portal (Listagem, Detalhes, Galeria e Notícias).  
-> No entanto, o consumo de dados pelo frontend ocorre apenas nas páginas de Listagem, Galeria Multimídia e Notícias.  
+> A API foi estruturada para oferecer tabelas e endpoints para páginas 'Listagem, Detalhes, Galeria e Notícias' do portal.  
+> No entanto, o consumo de dados pelo frontend ocorre apenas nas páginas de Listagem, Galeria e Notícias.  
 > As páginas Home, Detalhes (Biografia, Carreira no clube, Seleção Espanhola e Curiosidades e Lifestyle), Cadastro e Sobre Mim apresentam conteúdos estáticos definidos no próprio frontend.
 
 ---
